@@ -1,0 +1,26 @@
+{
+    "name": "soheylak/omnipay-saman",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Saman\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "soheyla.karimzade",
+            "email": "soheyla.karimzade@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "league/omnipay": "^3",
+        "omnipay/paypal": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
