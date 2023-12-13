@@ -5,7 +5,7 @@ namespace Omnipay\Saman\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
- * Class CreateOrderRequest
+ * Class CreateTokenRequest
  */
 class CreateTokenRequest extends AbstractRequest
 {
@@ -24,28 +24,18 @@ class CreateTokenRequest extends AbstractRequest
      * @return mixed
      * @throws InvalidRequestException
      */
-    public function getData()
+    public function getData():array
     {
         // Validate required parameters before return data
-        $this->validate('TerminalId', 'Amount', 'currency', 'returnUrl');
-
-
-//        ‫‪"action":"token",‬‬
-//        ‫‪"TerminalId":"0000",‬‬
-//        ‫‪"Amount":12000,‬‬
-//        ‫‪"ResNum":"1qaz@WSX",‬‬
-//        ‫‪"RedirectUrl":"http://mysite.com/receipt",‬‬
-//        ‫"‪"CellNumber":"9120000000‬‬
-
+        $this->validate('TerminalId', 'Amount', 'currency', 'RedirectUrl');
 
         return [
+            'action' =>"token",
             'TerminalId' => $this->getTerminalId(),
             'Amount' => $this->getAmount(),
             'ResNum' => $this->getOrderId(),
             'RedirectUrl' => $this->getReturnUrl(),
             'CellNumber' => $this->getCustomerPhone(),
-
-//            'custom_json_fields' => $this->getMeta(),
             'currency' => $this->getCurrency(),
             'payer_name' => $this->getPayerName(),
             'payer_desc' => $this->getPayerDesc(),

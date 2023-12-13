@@ -27,13 +27,11 @@ class RefundOrderRequest extends AbstractRequest
     public function getData()
     {
         // Validate required parameters before return data
-        $this->validate('apiKey', 'amount', 'currency', 'transactionReference');
+        $this->validate('RefNum','TerminalNumber');
 
         return [
-            'api_key' => $this->getApiKey(),
-            'trans_id' => $this->getTransactionReference(),
-            'amount' => $this->getAmount(),
-            'refund_request' => 'yes_money_back',
+            'RefNum' => $this->getRefNum(),
+            'TerminalNumber' => $this->getTerminalNumber(),
         ];
     }
 
@@ -43,7 +41,7 @@ class RefundOrderRequest extends AbstractRequest
      */
     protected function createUri(string $endpoint)
     {
-        return $endpoint . '/verify';
+        return $endpoint . '/verifyTxnRandomSessionkey/ipg/ReverseTransaction';
     }
 
     /**

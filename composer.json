@@ -7,6 +7,11 @@
             "Omnipay\\Saman\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnipay\\Saman\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "soheyla.karimzade",
@@ -17,6 +22,11 @@
     "require": {
         "league/omnipay": "^3",
         "omnipay/paypal": "^3.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "^4.1.2",
+        "phpunit/phpunit": "^8.5.14",
+        "http-interop/http-factory-guzzle": "^1.2"
     },
     "config": {
         "allow-plugins": {

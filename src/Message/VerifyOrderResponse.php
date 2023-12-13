@@ -7,22 +7,13 @@ namespace Omnipay\Saman\Message;
  */
 class VerifyOrderResponse extends AbstractResponse
 {
-    /**
-     * @inheritDoc
-     */
-    public function getTransactionReference()
-    {
-        /** @var VerifyOrderRequest $request */
-        $request = $this->request;
-        return $request->getTransactionReference();
-    }
 
     /**
      * @inheritDoc
      */
     public function isSuccessful()
     {
-        return $this->getHttpStatus() === 200 && (int)$this->getCode() === 0;
+        return $this->getHttpStatus() === 200 && (int)$this->getResultCode() == 0;
     }
 
     /**
@@ -31,5 +22,13 @@ class VerifyOrderResponse extends AbstractResponse
     public function isCancelled()
     {
         return $this->getHttpStatus() === 200 && $this->getCode() !== 0;
+    }
+
+    /**
+     * A reference provided by the gateway to represent this transaction.
+     */
+    public function getTransactionReference(): ?string
+    {
+        return $this->data['RefNum'];
     }
 }

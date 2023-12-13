@@ -91,6 +91,15 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
         return $this->data['status'] ?? parent::getCode();
     }
 
+
+//    public function getSuccess(){
+//        return $this->data['Success'] ?? null;
+//    }
+
+     public function getResultCode(){
+        return $this->data['ResultCode'] ?? null;
+    }
+
     /**
      * Http status code
      *

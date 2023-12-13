@@ -20,7 +20,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected string $liveEndpoint = 'https://nextpay.org/nx/gateway';
+    protected string $liveEndpoint = 'https://sep.shaparak.ir';
 
     /**
      * @return string
@@ -39,15 +39,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     abstract protected function createResponse(array $data);
 
-    /**
-     * @return string
-     */
-    public function getApiKey(): string
-    {
-        return $this->getParameter('apiKey');
-    }
-
-
 
     public function setOrderId(int $value){
         return $this->setParameter('orderId', $value);
@@ -56,8 +47,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('orderId');
     }
 
-
-
+    public function getTerminalId(){
+        return $this->getParameter('TerminalId');
+    }
 
     /**
      * @return bool
@@ -94,15 +86,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getCustomerPhone(): ?string
     {
-        return $this->getParameter('customerPhone');
+        return $this->getParameter('CellNumber');
     }
 
     /**
-     * @return mixed
+     * Get the request return URL.
+     *
+     * @return string
      */
-    public function getMeta(): mixed
+    public function getReturnUrl()
     {
-        return json_decode($this->getParameter('meta'));
+        return $this->getParameter('RedirectUrl');
     }
 
     /**
@@ -128,6 +122,37 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->getParameter('allowedCard');
     }
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setTerminalId(string $value): self
+    {
+        return $this->setParameter('TerminalId', $value);
+    }
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setAmount($value): self
+    {
+        return $this->setParameter('Amount', $value);
+    }
+
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setReturnUrl($value): self
+    {
+        return $this->setParameter('RedirectUrl', $value);
+    }
+
+
+
 
     /**
      * @param string $value
@@ -202,6 +227,23 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         }
         return $this->liveEndpoint;
     }
+
+
+    public function setRefNum($value){
+        return $this->setParameter('RefNum', $value);
+    }
+
+    public function getRefNum(){
+        return $this->getParameter('RefNum');
+    }
+
+    public function setTerminalNumber($value){
+        return $this->setParameter('TerminalNumber', $value);
+    }
+    public function getTerminalNumber(){
+        return $this->getParameter('TerminalNumber');
+    }
+
 
     /**
      * Send the request with specified data

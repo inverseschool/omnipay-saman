@@ -3,6 +3,9 @@
 namespace Omnipay\Saman;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Saman\Message\CreateTokenRequest;
+use Omnipay\Saman\Message\RefundOrderRequest;
+use Omnipay\Saman\Message\VerifyOrderRequest;
 
 /**
  * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = array())
@@ -18,7 +21,7 @@ use Omnipay\Common\AbstractGateway;
  * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface deleteCard(array $options = array())
  */
-class Gatway extends  AbstractGateway
+class Gateway extends  AbstractGateway
 {
 
 
@@ -40,7 +43,7 @@ class Gatway extends  AbstractGateway
     {
         return [
             'testMode' => false,
-            'apiKey' => '',
+            'TerminalId' => '',
             'returnUrl' => '',
             'currency' => 'IRT', // either IRT or IRR
         ];
@@ -55,18 +58,13 @@ class Gatway extends  AbstractGateway
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getApiKey(): ?string
-    {
-        return $this->getParameter('apiKey');
-    }
-
-
-    public function getTerminalId(){
-        return $this->getParameter('TerminalId');
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getApiKey(): ?string
+//    {
+//        return $this->getParameter('apiKey');
+//    }
 
     /**
      * @return string
@@ -76,14 +74,6 @@ class Gatway extends  AbstractGateway
         return $this->getParameter('returnUrl');
     }
 
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setApiKey(string $value): self
-    {
-        return $this->setParameter('apiKey', $value);
-    }
 
     /**
      * @param string $value
@@ -95,10 +85,19 @@ class Gatway extends  AbstractGateway
     }
 
 
+    public function setTerminalId(string $value){
+        return $this->setParameter('TerminalId', $value);
+    }
+
+    public function getTerminalId(){
+        return $this->getParameter('TerminalId');
+    }
+
+
     /**
      * @inheritDoc
      */
-    public function purchase(array $options = []): RequestInterface
+    public function purchase(array $options = [])
     {
         return $this->createRequest(CreateTokenRequest::class, $options);
     }
@@ -106,7 +105,7 @@ class Gatway extends  AbstractGateway
     /**
      * @inheritDoc
      */
-    public function completePurchase(array $options = []): RequestInterface
+    public function completePurchase(array $options = [])
     {
         return $this->createRequest(VerifyOrderRequest::class, $options);
     }
@@ -114,20 +113,10 @@ class Gatway extends  AbstractGateway
     /**
      * @inheritDoc
      */
-    public function refund(array $options = []): RequestInterface
+    public function refund(array $options = [])
     {
         return $this->createRequest(RefundOrderRequest::class, $options);
     }
-
-    /**
-     * Return the key of transaction reference in returned responses of the gateway
-     * @return string
-     */
-    public function getTransactionReferenceKey(): string
-    {
-        return 'trans_id';
-    }
-
 
 
 }

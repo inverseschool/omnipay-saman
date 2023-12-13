@@ -1,0 +1,27 @@
+HTTP/2 200
+server: nginx
+date: Fri, 30 Aug 2019 17:13:47 GMT
+content-type: application/json
+vary: Accept-Encoding
+vary: Accept-Encoding
+x-powered-by: PHP/7.0.7
+cache-control: private, must-revalidate
+pragma: no-cache
+expires: -1
+
+{
+    "TransactionDetail":{
+        "RRN":"14226761817",
+        "RefNum":"50",
+        "MaskedPan":"621986****8088",
+        "HashedPan":"b96a14400c3a59249e87c300ecc06e5920327e70220213b5bbb7d7b2410f7e0d",
+        "TerminalNumber":2001,
+        "OrginalAmount":1000,
+        "AffectiveAmount":1000,
+        "StraceDate":"2019-09-16 18:11:06",
+        "StraceNo":"100428"
+    },
+    "ResultCode":-2,
+    "ResultDescription":"تراکنش یافت نشد.",
+    "Success":false
+}

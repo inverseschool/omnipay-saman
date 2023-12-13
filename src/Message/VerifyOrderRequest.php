@@ -24,16 +24,14 @@ class VerifyOrderRequest extends AbstractRequest
      * @return mixed
      * @throws InvalidRequestException
      */
-    public function getData()
+    public function getData():array
     {
         // Validate required parameters before return data
-        $this->validate('apiKey', 'amount', 'currency', 'transactionReference');
+        $this->validate('RefNum','TerminalNumber');
 
         return [
-            'api_key' => $this->getApiKey(),
-            'trans_id' => $this->getTransactionReference(),
-            'amount' => $this->getAmount(),
-            'currency' => $this->getCurrency(),
+            'RefNum' => $this->getRefNum(),
+            'TerminalNumber' => $this->getTerminalNumber(),
         ];
     }
 
@@ -43,7 +41,7 @@ class VerifyOrderRequest extends AbstractRequest
      */
     protected function createUri(string $endpoint)
     {
-        return $endpoint . '/verify';
+        return $endpoint . '/verifyTxnRandomSessionkey/ipg/VerifyTransaction';
     }
 
     /**
