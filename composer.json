@@ -20,12 +20,16 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "league/omnipay": "^3",
-        "omnipay/paypal": "^3.0"
+        "php": "^8",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "omnipay/common": "^3",
+        "symfony/http-client": "^6.4"
     },
     "require-dev": {
-        "omnipay/tests": "^4.1.2",
-        "phpunit/phpunit": "^8.5.14",
+        "omnipay/tests": "4.1.1",
+        "phpstan/phpstan": "^1.8",
+        "squizlabs/php_codesniffer": "^3",
         "http-interop/http-factory-guzzle": "^1.2"
     },
     "config": {

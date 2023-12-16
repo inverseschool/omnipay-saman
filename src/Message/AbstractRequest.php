@@ -152,8 +152,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
 
-
-
     /**
      * @param string $value
      * @return self

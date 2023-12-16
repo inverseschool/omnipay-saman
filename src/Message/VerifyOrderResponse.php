@@ -21,7 +21,7 @@ class VerifyOrderResponse extends AbstractResponse
      */
     public function isCancelled()
     {
-        return $this->getHttpStatus() === 200 && $this->getCode() !== 0;
+        return $this->getHttpStatus() === 200 && (int)$this->getCode() !== 0;
     }
 
     /**

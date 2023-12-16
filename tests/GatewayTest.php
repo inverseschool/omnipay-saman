@@ -5,11 +5,9 @@ namespace Omnipay\Saman\Tests;
 
 use Omnipay\Saman\Gateway;
 use Omnipay\Saman\Message\AbstractResponse;
-use Omnipay\Saman\Message\RefundOrderRequest;
 use Omnipay\Saman\Message\RefundOrderResponse;
 use Omnipay\Saman\Message\VerifyOrderResponse;
 use Omnipay\Tests\GatewayTestCase;
-
 
 /**
  * Class GatewayTest
@@ -17,7 +15,6 @@ use Omnipay\Tests\GatewayTestCase;
  */
 class GatewayTest extends GatewayTestCase
 {
-
 
     /**
      * @var Gateway
@@ -30,16 +27,14 @@ class GatewayTest extends GatewayTestCase
     protected $params;
 
 
-
     public function setUp(): void
     {
         parent::setUp();
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
+
         $this->gateway->setTerminalId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
         $this->gateway->setReturnUrl('https://www.example.com/return');
-
-
     }
 
 
@@ -80,12 +75,10 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
 
-
         $param= [
             'RefNum' => 'jJnBmy/IojtTemplUH5ke9ULCGtDtb',
             'TerminalNumber' => 2015,
         ];
-
 
         $response = $this->gateway->completePurchase($param)->send();
 
@@ -107,7 +100,6 @@ class GatewayTest extends GatewayTestCase
             'RefNum' => '',
             'TerminalNumber' => 2015,
         ];
-
 
         /** @var VerifyOrderResponse $response */
         $response = $this->gateway->completePurchase($param)->send();
@@ -159,8 +151,5 @@ class GatewayTest extends GatewayTestCase
         self::assertNotSame('', $responseData["TransactionDetail"]['RefNum']);
         self::assertEquals(-2, $responseData["ResultCode"]);
     }
-
-
-
 
 }

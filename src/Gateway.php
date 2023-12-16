@@ -7,23 +7,8 @@ use Omnipay\Saman\Message\CreateTokenRequest;
 use Omnipay\Saman\Message\RefundOrderRequest;
 use Omnipay\Saman\Message\VerifyOrderRequest;
 
-/**
- * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface authorize(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface fetchTransaction(array $options = [])
- * @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface deleteCard(array $options = array())
- */
 class Gateway extends  AbstractGateway
 {
-
 
     /**
      * Get gateway display name
@@ -45,7 +30,6 @@ class Gateway extends  AbstractGateway
             'testMode' => false,
             'TerminalId' => '',
             'returnUrl' => '',
-            'currency' => 'IRT', // either IRT or IRR
         ];
     }
 
@@ -57,14 +41,6 @@ class Gateway extends  AbstractGateway
         parent::initialize($parameters);
         return $this;
     }
-
-//    /**
-//     * @return string
-//     */
-//    public function getApiKey(): ?string
-//    {
-//        return $this->getParameter('apiKey');
-//    }
 
     /**
      * @return string
@@ -117,6 +93,4 @@ class Gateway extends  AbstractGateway
     {
         return $this->createRequest(RefundOrderRequest::class, $options);
     }
-
-
 }
