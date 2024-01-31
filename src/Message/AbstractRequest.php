@@ -20,7 +20,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected string $liveEndpoint = 'https://sep.shaparak.ir';
+    protected $liveEndpoint = 'https://sep.shaparak.ir';
 
     /**
      * @return string
