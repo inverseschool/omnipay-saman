@@ -61,43 +61,21 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @return string
-     * @throws InvalidRequestException
      */
     public function getAmount(): string
     {
-        $currency = $this->getCurrency();
-
-        // a little hack to prevent error because of non-standard currency code!
-        // only "IRR" is a standard iso code
-        if ($currency !== 'IRR') {
-            $this->setCurrency('IRR');
-            $value = parent::getAmount();
-            $this->setCurrency($currency);
-        } else {
-            $value = parent::getAmount();
-        }
-
-        $value = $value ?: $this->httpRequest->query->get('Amount');
-        return (string)$value;
+        return $this->getParameter('Amount');
     }
 
     /**
-     * @return string|null
+     * @param string $value
+     * @return self
      */
-    public function getCustomerPhone(): ?string
+    public function setAmount($value): self
     {
-        return $this->getParameter('CellNumber');
+        return $this->setParameter('Amount', $value);
     }
 
-    /**
-     * Get the request return URL.
-     *
-     * @return string
-     */
-    public function getReturnUrl()
-    {
-        return $this->getParameter('RedirectUrl');
-    }
 
     /**
      * @return string|null
@@ -136,19 +114,50 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $value
      * @return self
      */
-    public function setAmount($value): self
+    public function setRedirectUrl(string $value): self
     {
-        return $this->setParameter('Amount', $value);
+        return $this->setParameter('RedirectUrl', $value);
     }
 
+    /**
+     * @return string
+     */
+    public function getRedirectUrl(): ?string
+    {
+        return $this->getParameter('RedirectUrl');
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setCellNumber(string $value)
+    {
+        return $this->setParameter('CellNumber', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCellNumber(): ?string
+    {
+        return $this->getParameter('CellNumber');
+    }
 
     /**
      * @param string $value
      * @return self
      */
-    public function setReturnUrl($value): self
+    public function setResNum(string $value): self
     {
-        return $this->setParameter('RedirectUrl', $value);
+        return $this->setParameter('ResNum', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResNum(): ?string
+    {
+        return $this->getParameter('ResNum');
     }
 
 
@@ -170,14 +179,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('autoVerify', $autoVerify);
     }
 
-    /**
-     * @param string $customerPhone
-     * @return self
-     */
-    public function setCustomerPhone(string $customerPhone): self
-    {
-        return $this->setParameter('customerPhone', $customerPhone);
-    }
 
     /**
      * @param mixed $meta
