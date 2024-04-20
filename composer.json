@@ -1,5 +1,5 @@
 {
-    "name": "soheylak/omnipay-saman",
+    "name": "inverseschool/omnipay-saman",
     "type": "library",
     "license": "MIT",
     "autoload": {

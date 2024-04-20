@@ -1,6 +1,6 @@
 ## Instalation
 
-    composer require soheylak/omnipay-saman
+    composer require inverseschool/omnipay-saman
 
 ## Example
 
