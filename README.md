@@ -10,7 +10,7 @@
 
 ```php
     $gateway->setTerminalId('xxxxxxxxxxxx');
-    $gateway->setReturnUrl('https://www.example.com/return');
+    $gateway->setRedirectUrl('https://www.example.com/return');
    
     $response = $gateway->purchase([
         'Amount' => $amount,

@@ -39,14 +39,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     abstract protected function createResponse(array $data);
 
-
-    public function setOrderId(int $value){
-        return $this->setParameter('orderId', $value);
-    }
-    public function getOrderId(){
-        return $this->getParameter('orderId');
-    }
-
     public function getTerminalId(){
         return $this->getParameter('TerminalId');
     }
@@ -59,45 +51,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return (bool)$this->getParameter('autoVerify');
     }
 
-    /**
-     * @return string
-     * @throws InvalidRequestException
-     */
     public function getAmount(): string
     {
-        $currency = $this->getCurrency();
-
-        // a little hack to prevent error because of non-standard currency code!
-        // only "IRR" is a standard iso code
-        if ($currency !== 'IRR') {
-            $this->setCurrency('IRR');
-            $value = parent::getAmount();
-            $this->setCurrency($currency);
-        } else {
-            $value = parent::getAmount();
-        }
-
-        $value = $value ?: $this->httpRequest->query->get('Amount');
-        return (string)$value;
+        return $this->getParameter('Amount');
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCustomerPhone(): ?string
+    public function setAmount($value): self
     {
-        return $this->getParameter('CellNumber');
+        return $this->setParameter('Amount', $value);
     }
 
-    /**
-     * Get the request return URL.
-     *
-     * @return string
-     */
-    public function getReturnUrl()
-    {
-        return $this->getParameter('RedirectUrl');
-    }
 
     /**
      * @return string|null
@@ -136,21 +99,34 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $value
      * @return self
      */
-    public function setAmount($value): self
-    {
-        return $this->setParameter('Amount', $value);
-    }
-
-
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setReturnUrl($value): self
+    public function setRedirectUrl(string $value): self
     {
         return $this->setParameter('RedirectUrl', $value);
     }
 
+    /**
+     * @return string
+     */
+    public function getRedirectUrl(): ?string
+    {
+        return $this->getParameter('RedirectUrl');
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setCellNumber(string $value)
+    {
+        return $this->setParameter('CellNumber', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCellNumber(): ?string
+    {
+        return $this->getParameter('CellNumber');
+    }
 
     /**
      * @param string $value
@@ -170,14 +146,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('autoVerify', $autoVerify);
     }
 
-    /**
-     * @param string $customerPhone
-     * @return self
-     */
-    public function setCustomerPhone(string $customerPhone): self
-    {
-        return $this->setParameter('customerPhone', $customerPhone);
-    }
 
     /**
      * @param mixed $meta
@@ -227,10 +195,34 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
 
-    public function setRefNum($value){
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setResNum(string $value): self
+    {
+        return $this->setParameter('ResNum', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResNum(): ?string
+    {
+        return $this->getParameter('ResNum');
+    }
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setRefNum($value):self{
         return $this->setParameter('RefNum', $value);
     }
 
+    /**
+     * @return string
+     */
     public function getRefNum(){
         return $this->getParameter('RefNum');
     }

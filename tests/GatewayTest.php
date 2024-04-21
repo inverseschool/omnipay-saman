@@ -34,7 +34,7 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         $this->gateway->setTerminalId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
-        $this->gateway->setReturnUrl('https://www.example.com/return');
+        $this->gateway->setRedirectUrl('https://www.example.com/return');
     }
 
 
