@@ -39,14 +39,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     abstract protected function createResponse(array $data);
 
-
-    public function setOrderId(int $value){
-        return $this->setParameter('orderId', $value);
-    }
-    public function getOrderId(){
-        return $this->getParameter('orderId');
-    }
-
     public function getTerminalId(){
         return $this->getParameter('TerminalId');
     }
@@ -59,18 +51,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return (bool)$this->getParameter('autoVerify');
     }
 
-    /**
-     * @return string
-     */
     public function getAmount(): string
     {
         return $this->getParameter('Amount');
     }
 
-    /**
-     * @param string $value
-     * @return self
-     */
     public function setAmount($value): self
     {
         return $this->setParameter('Amount', $value);
@@ -147,24 +132,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $value
      * @return self
      */
-    public function setResNum(string $value): self
-    {
-        return $this->setParameter('ResNum', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getResNum(): ?string
-    {
-        return $this->getParameter('ResNum');
-    }
-
-
-    /**
-     * @param string $value
-     * @return self
-     */
     public function setApiKey(string $value): self
     {
         return $this->setParameter('apiKey', $value);
@@ -228,10 +195,34 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
 
-    public function setRefNum($value){
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setResNum(string $value): self
+    {
+        return $this->setParameter('ResNum', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResNum(): ?string
+    {
+        return $this->getParameter('ResNum');
+    }
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setRefNum($value):self{
         return $this->setParameter('RefNum', $value);
     }
 
+    /**
+     * @return string
+     */
     public function getRefNum(){
         return $this->getParameter('RefNum');
     }

@@ -33,7 +33,7 @@ class CreateTokenRequest extends AbstractRequest
             'action' =>"token",
             'TerminalId' => $this->getTerminalId(),
             'Amount' => $this->getAmount(),
-            'ResNum' => $this->getOrderId(),
+            'ResNum' => $this->getResNum(),
             'RedirectUrl' => $this->getRedirectUrl(),
             'CellNumber' => $this->getCellNumber(),
             'currency' => $this->getCurrency(),
