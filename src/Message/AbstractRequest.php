@@ -1,14 +1,11 @@
 <?php
 
-
-
 namespace Omnipay\Saman\Message;
 
 use Exception;
-use RuntimeException;
-use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\ResponseInterface;
+use RuntimeException;
 
 /**
  * Class AbstractRequest
@@ -226,14 +223,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getRefNum(){
         return $this->getParameter('RefNum');
     }
-
-    public function setTerminalNumber($value){
-        return $this->setParameter('TerminalNumber', $value);
-    }
-    public function getTerminalNumber(){
-        return $this->getParameter('TerminalNumber');
-    }
-
 
     /**
      * Send the request with specified data

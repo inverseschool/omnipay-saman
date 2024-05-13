@@ -27,11 +27,11 @@ class VerifyOrderRequest extends AbstractRequest
     public function getData():array
     {
         // Validate required parameters before return data
-        $this->validate('RefNum','TerminalNumber');
+        $this->validate('transactionReference');
 
         return [
-            'RefNum' => $this->getRefNum(),
-            'TerminalNumber' => $this->getTerminalNumber(),
+            'RefNum' => $this->getTransactionReference(),
+            'TerminalNumber' => $this->getTerminalId(),
         ];
     }
 
