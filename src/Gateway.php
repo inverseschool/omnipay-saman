@@ -27,9 +27,7 @@ class Gateway extends  AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
-            'testMode' => false,
-            'TerminalId' => '',
-            'RedirectUrl' => '',
+            'terminalId' => '',
         ];
     }
 
@@ -42,31 +40,15 @@ class Gateway extends  AbstractGateway
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRedirectUrl(): ?string
+    public function setTerminalId(string $value)
     {
-        return $this->getParameter('RedirectUrl');
+        return $this->setParameter('terminalId', $value);
     }
 
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setRedirectUrl(string $value): self
+    public function getTerminalId()
     {
-        return $this->setParameter('RedirectUrl', $value);
+        return $this->getParameter('terminalId');
     }
-
-    public function setTerminalId(string $value){
-        return $this->setParameter('TerminalId', $value);
-    }
-
-    public function getTerminalId(){
-        return $this->getParameter('TerminalId');
-    }
-
 
     /**
      * @inheritDoc

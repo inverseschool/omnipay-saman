@@ -37,50 +37,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     abstract protected function createResponse(array $data);
 
     public function getTerminalId(){
-        return $this->getParameter('TerminalId');
-    }
-
-    /**
-     * @return bool
-     */
-    public function getAutoVerify(): bool
-    {
-        return (bool)$this->getParameter('autoVerify');
+        return $this->getParameter('terminalId');
     }
 
     public function getAmount(): string
     {
-        return $this->getParameter('Amount');
+        return $this->getParameter('amount');
     }
 
     public function setAmount($value): self
     {
-        return $this->setParameter('Amount', $value);
-    }
-
-
-    /**
-     * @return string|null
-     */
-    public function getPayerName(): ?string
-    {
-        return $this->getParameter('payerName');
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPayerDesc(): ?string
-    {
-        return $this->getParameter('payerName');
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getAllowedCard(): ?string
-    {
-        return $this->getParameter('allowedCard');
+        return $this->setParameter('amount', $value);
     }
 
     /**
@@ -89,24 +56,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function setTerminalId(string $value): self
     {
-        return $this->setParameter('TerminalId', $value);
-    }
-
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setRedirectUrl(string $value): self
-    {
-        return $this->setParameter('RedirectUrl', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getRedirectUrl(): ?string
-    {
-        return $this->getParameter('RedirectUrl');
+        return $this->setParameter('terminalId', $value);
     }
 
     /**
@@ -135,49 +85,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * @param bool $autoVerify
-     * @return self
-     */
-    public function setAutoVerify(bool $autoVerify): self
-    {
-        return $this->setParameter('autoVerify', $autoVerify);
-    }
-
-
-    /**
      * @param mixed $meta
      * @return self
      */
     public function setMeta(mixed $meta): self
     {
         return $this->setParameter('meta', json_encode($meta));
-    }
-
-    /**
-     * @param string $payerName
-     * @return self
-     */
-    public function setPayerName(string $payerName): self
-    {
-        return $this->setParameter('payerName', $payerName);
-    }
-
-    /**
-     * @param string $payerDesc
-     * @return self
-     */
-    public function setPayerDesc(string $payerDesc): self
-    {
-        return $this->setParameter('payerDesc', $payerDesc);
-    }
-
-    /**
-     * @param string $allowedCard
-     * @return self
-     */
-    public function setAllowedCard(string $allowedCard): self
-    {
-        return $this->setParameter('allowedCard', $allowedCard);
     }
 
     /**
@@ -189,39 +102,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             throw new \InvalidArgumentException('Nextpay payment gateway does not support test mode.');
         }
         return $this->liveEndpoint;
-    }
-
-
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setResNum(string $value): self
-    {
-        return $this->setParameter('ResNum', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getResNum(): ?string
-    {
-        return $this->getParameter('ResNum');
-    }
-
-    /**
-     * @param string $value
-     * @return self
-     */
-    public function setRefNum($value):self{
-        return $this->setParameter('RefNum', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getRefNum(){
-        return $this->getParameter('RefNum');
     }
 
     /**

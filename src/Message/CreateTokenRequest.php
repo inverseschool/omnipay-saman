@@ -27,20 +27,15 @@ class CreateTokenRequest extends AbstractRequest
     public function getData():array
     {
         // Validate required parameters before return data
-        $this->validate('TerminalId', 'Amount', 'currency', 'RedirectUrl');
+        $this->validate('terminalId', 'amount', 'returnUrl', 'transactionId');
 
         return [
             'action' =>"token",
             'TerminalId' => $this->getTerminalId(),
             'Amount' => $this->getAmount(),
-            'ResNum' => $this->getResNum(),
-            'RedirectUrl' => $this->getRedirectUrl(),
+            'ResNum' => $this->getTransactionId(),
+            'RedirectUrl' => $this->getReturnUrl(),
             'CellNumber' => $this->getCellNumber(),
-            'currency' => $this->getCurrency(),
-            'payer_name' => $this->getPayerName(),
-            'payer_desc' => $this->getPayerDesc(),
-            'auto_verify' => $this->getAutoVerify(),
-            'allowed_card' => $this->getAllowedCard(),
         ];
     }
 

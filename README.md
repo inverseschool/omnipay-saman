@@ -10,13 +10,11 @@
 
 ```php
     $gateway->setTerminalId('xxxxxxxxxxxx');
-    $gateway->setRedirectUrl('https://www.example.com/return');
    
     $response = $gateway->purchase([
-        'Amount' => $amount,
-        'currency' => $currency,
-        'ResNum'=>'10',
-        'CellNumber'=>'9120000000'
+        'amount' => $amount,
+        'transactionId' => 'Merchant-Ref-X',
+        'returnUrl' => 'https://www.example.com/return',
     ])->send();
 
     // Process response
@@ -34,8 +32,10 @@
 
 ### Complete Purchase (Verify)
 
+Verify an order by `Transaction Reference`:
+
 ```php
-// Send purchase complete request
+    // Send purchase complete request
     
     $response = $gateway->completePurchase([
         'transactionReference' => $refNum,
@@ -52,7 +52,7 @@
 
 ### Refund Order
 
-Refund an order by the $refNum:
+Refund an order by `Transaction Reference`:
 
 ```php
     $response = $gateway->refund([

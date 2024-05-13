@@ -34,7 +34,6 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 
         $this->gateway->setTerminalId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
-        $this->gateway->setRedirectUrl('https://www.example.com/return');
     }
 
 
@@ -42,7 +41,7 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('PurchaseSuccess.txt');
 
-        $paramValue= ['TerminalId'=>'eee','Amount' => '12.00','currency'=>'IRR','ResNum'=>'1qaz@WSX','CellNumber'=>'9120000000'];
+        $paramValue= ['terminalId'=>'eee','amount' => '12.00', 'transactionId'=>'1qaz@WSX', 'CellNumber'=>'9120000000'];
 
         $response = $this->gateway->purchase($paramValue)->send();
         $responseData=$response->getData();
@@ -59,7 +58,7 @@ class GatewayTest extends GatewayTestCase
     {
         $this->setMockHttpResponse('PurchaseFailure.txt');
 
-        $paramValue= ['TerminalId'=>'','Amount' => '12.00','currency'=>'IRR','RedirectUrl'=>'http://mysite.com/receipt','ResNum'=>'1qaz@WSX','CellNumber'=>'9120000000'];
+        $paramValue= ['terminalId'=>'','amount' => '12.00','returnUrl'=>'http://mysite.com/receipt','transactionId'=>'1qaz@WSX','CellNumber'=>'9120000000'];
         /** @var AbstractResponse $response */
         $response = $this->gateway->purchase($paramValue)->send();
         $responseData=$response->getData();
