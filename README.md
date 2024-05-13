@@ -38,8 +38,7 @@
 // Send purchase complete request
     
     $response = $gateway->completePurchase([
-        'RefNum' => $refNum,
-        'TerminalNumber' => $terminalNumber, 
+        'transactionReference' => $refNum,
     ])->send();
     
     if (!$response->isSuccessful() || $response->isCancelled()) {
@@ -57,8 +56,7 @@ Refund an order by the $refNum:
 
 ```php
     $response = $gateway->refund([
-        'RefNum' => $refNum,
-        'TerminalNumber' => $terminalNumber,
+        'transactionReference' => $refNum,
     ])->send();
     
     if ($response->isSuccessful()) {
