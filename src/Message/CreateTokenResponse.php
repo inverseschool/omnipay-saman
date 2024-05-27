@@ -39,8 +39,8 @@ class CreateTokenResponse extends AbstractResponse implements RedirectResponseIn
         return sprintf('%s/OnlinePG/SendToken?token=%s', $request->getEndpoint(), $this->getTransactionReference());
     }
 
-
-    public function getTransactionReference(){
+    public function getTransactionReference()
+    {
         return $this->data['token'];
     }
 }

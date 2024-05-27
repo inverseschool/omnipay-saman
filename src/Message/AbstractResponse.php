@@ -26,7 +26,7 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     /**
      * @var array
      */
-    protected $errorVerifyCode=[
+    protected $errorVerifyCode = [
         '-2' => 'تراکنش یافت نشد',
         '-6' => 'بیش از نیم ساعت از زمان اجرای تراکنش گذشته است',
         '0' => 'موفق',
@@ -36,8 +36,6 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
         '-106' => 'آدرس آی پی درخواستی غیر مجاز می باشد'
     ];
 
-
-
     /**
      * Response Message
      *
@@ -45,14 +43,13 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
      */
     public function getMessage()
     {
-        return $this->errorCodes[(string)$this->getErrorCode()] ?? ( $this->errorVerifyCode[(string)$this->getErrorCode()] ?? parent::getMessage());
+        return $this->errorCodes[(string)$this->getErrorCode()] ?? ($this->errorVerifyCode[(string)$this->getErrorCode()] ?? parent::getMessage());
     }
 
-
-    public function getErrorCode(){
-        return $this->data['errorCode'] ?? ( $this->data['ResultCode'] ?? parent::getCode());
+    public function getErrorCode()
+    {
+        return $this->data['errorCode'] ?? ($this->data['ResultCode'] ?? parent::getCode());
     }
-
 
     /**
      * Response code
@@ -64,8 +61,8 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
         return $this->data['status'] ?? parent::getCode();
     }
 
-
-     public function getResultCode(){
+    public function getResultCode()
+    {
         return $this->data['ResultCode'] ?? null;
     }
 
