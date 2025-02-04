@@ -13,7 +13,9 @@ class VerifyOrderResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->getHttpStatus() === 200 && (int)$this->getResultCode() === 0;
+        return $this->getHttpStatus() === 200
+            && (int)$this->getResultCode() >= 0
+            && (int)$this->getAffectiveAmount() === (int)$this->getOriginalAmount();
     }
 
     /**
@@ -30,5 +32,22 @@ class VerifyOrderResponse extends AbstractResponse
     public function getTransactionReference(): ?string
     {
         return $this->data['RefNum'];
+    }
+
+    /**
+     * The original amount
+     */
+    public function getOriginalAmount(): ?string
+    {
+        // NOTE: "OrginalAmount" has a typo! this is exactly the same parameter which saman ipg returns!!
+        return $this->data['OrginalAmount'];
+    }
+
+    /**
+     * The actual paid amount
+     */
+    public function getAffectiveAmount(): ?string
+    {
+        return $this->data['AffectiveAmount'];
     }
 }
